@@ -1,19 +1,15 @@
+import { routes } from './app.routing';
+import { CoreModule } from './core/core.module';
+import { rootReducer } from './reducers';
+import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IdlePreload, IdlePreloadModule } from '@angularclass/idle-preload';
-
-import { EffectsModule } from '@ngrx/effects';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterStoreModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { useLogMonitor } from '@ngrx/store-log-monitor';
-
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-import { routes } from './app.routing';
-import { rootReducer } from './reducers';
-import { StoreDevToolsModule } from './features/store-devtools.module';
-import { UserEffects } from './user/user.effects';
 
 const STORE_DEV_TOOLS_IMPORTS = [];
 if (ENV === 'development' && !AOT &&
@@ -28,7 +24,6 @@ if (ENV === 'development' && !AOT &&
 ]);
 
 export const APP_IMPORTS = [
-  EffectsModule.run(UserEffects),
   NgbModule.forRoot(),
   ReactiveFormsModule,
   IdlePreloadModule.forRoot(), // forRoot ensures the providers are only created once
@@ -36,6 +31,7 @@ export const APP_IMPORTS = [
   RouterStoreModule.connectRouter(),
   StoreModule.provideStore(rootReducer),
   STORE_DEV_TOOLS_IMPORTS,
-  StoreDevToolsModule
+  CoreModule,
+  SharedModule.forRoot(),
 ];
 

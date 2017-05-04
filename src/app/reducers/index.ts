@@ -4,20 +4,15 @@ import { storeFreeze } from 'ngrx-store-freeze';
 import { storeLogger } from 'ngrx-store-logger';
 import { routerReducer, RouterState } from '@ngrx/router-store';
 
-import * as fromUser from '../user/user.reducer';
-
 const modules = {
-  'user': fromUser
 };
 
 export interface AppState {
   router: RouterState;
-  user: fromUser.UserState;
 }
 
 export const reducers = {
   router: routerReducer,
-  user: fromUser.userReducer
 };
 
 // Generate a reducer to set the root state in dev mode for HMR
