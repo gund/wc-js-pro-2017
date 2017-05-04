@@ -1,10 +1,20 @@
+import { ComponentsModule } from '../components/components.module';
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    NgbModule,
+    ComponentsModule,
+  ],
+  exports: [
+    CommonModule,
+    NgbModule,
+    ComponentsModule,
+  ],
   declarations: [],
-  exports: [],
   providers: [],
 })
 export class SharedModule {
